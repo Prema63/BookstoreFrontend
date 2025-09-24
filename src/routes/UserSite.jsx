@@ -8,7 +8,6 @@ import Signup from "../components/Home/Signup";
 import Login from "../components/Home/Login";
 
 
-
 function UserRoute() {
   return (
     <Routes>
@@ -16,6 +15,7 @@ function UserRoute() {
         <Route index element={<Homepage />} />
         <Route path="popular" element={<Popular />} />
         <Route path="contact" element={<Contact />} />
+        <Route path="about" element={<Abou />} />
         <Route path="signup" element={<Signup />} />
         <Route path="login" element={<Login />} />
       </Route>
