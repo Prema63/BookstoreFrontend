@@ -2,6 +2,8 @@ import React from "react";
 import { useState } from "react";
 import { Eye, EyeOff, BookOpen, Mail, Lock } from "lucide-react";
 import { Link } from "react-router-dom";
+import { FcGoogle } from "react-icons/fc";
+import { BiLogoGmail } from "react-icons/bi";
 
 export default function BookstoreLogin() {
   const [showPassword, setShowPassword] = useState(false);
@@ -138,14 +140,42 @@ export default function BookstoreLogin() {
               </a>
             </div>
 
-            {/* Login Button */}
+            {/* Login Button and alternative logins */}
             <button
               type="button"
               onClick={handleSubmit}
               className="w-full bg-blue-800 text-white py-3 px-4 rounded-lg font-medium hover:bg-blue-900 transform transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
             >
+              
               Sign In
             </button>
+
+            {/* Divider */}
+            <div className="flex items-center">
+              <div className="flex-grow h-px bg-gray-300"></div>
+              <span className="px-4 text-sm text-gray-500">or</span>
+              <div className="flex-grow h-px bg-gray-300"></div>
+            </div>
+
+            {/*Alternative Sign-in Options */}
+            <div className="space-y-3">
+              <button
+                type="button"
+                className="w-full flex items-center justify-center gap-3 border border-gray-300 bg-white text-gray-700 py-3 px-4 rounded-lg font-medium hover:bg-gray-50 transform transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+              >
+                <FcGoogle className="w-5 h-5" />
+                Sign in with Google
+              </button>
+
+              <button
+                type="button"
+                className="w-full flex items-center justify-center gap-3 border border-gray-300 bg-white text-gray-700 py-3 px-4 rounded-lg font-medium hover:bg-gray-50 transform transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+              >
+                <BiLogoGmail className="w-5 h-5" />
+                Continue with Email
+              </button>
+            </div>
+
           </div>
         </div>
       </div>

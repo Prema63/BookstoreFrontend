@@ -6,6 +6,7 @@ import Popular from "../pages/popular/Popular";
 import Contact from "../pages/contactUS/Contact";
 import Signup from "../components/Home/Signup";
 import Login from "../components/Home/Login";
+import AboutUs from "../pages/about/AboutUs";
 
 
 function UserRoute() {
@@ -15,7 +16,7 @@ function UserRoute() {
         <Route index element={<Homepage />} />
         <Route path="popular" element={<Popular />} />
         <Route path="contact" element={<Contact />} />
-        <Route path="about" element={<Abou />} />
+        <Route path="about" element={<AboutUs />} />
         <Route path="signup" element={<Signup />} />
         <Route path="login" element={<Login />} />
       </Route>

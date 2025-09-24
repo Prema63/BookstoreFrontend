@@ -1,20 +1,30 @@
-import React, { useState } from 'react';
-import { Eye, EyeOff, BookOpen, Mail, User, Lock, Phone, MapPin } from 'lucide-react';
+import React, { useState } from "react";
+import {
+  Eye,
+  EyeOff,
+  BookOpen,
+  Mail,
+  User,
+  Lock,
+  Phone,
+  MapPin,
+} from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function BookstoreSignup() {
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    password: '',
-    confirmPassword: '',
-    address: '',
-    city: '',
-    zipCode: '',
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    password: "",
+    confirmPassword: "",
+    address: "",
+    city: "",
+    zipCode: "",
     favoriteGenres: [],
     newsletter: true,
-    terms: false
+    terms: false,
   });
 
   const [showPassword, setShowPassword] = useState(false);
@@ -22,38 +32,50 @@ export default function BookstoreSignup() {
   const [errors, setErrors] = useState({});
 
   const genres = [
-    'Fiction', 'Non-Fiction', 'Mystery', 'Romance', 'Sci-Fi', 'Fantasy',
-    'Biography', 'History', 'Self-Help', 'Poetry', 'Children\'s', 'Young Adult'
+    "Fiction",
+    "Non-Fiction",
+    "Romance",
+    "Sci-Fi",
+    "Fantasy",
+    "Novel",
+    "Motivational",
+    "Poetry",
+    "Young Adult",
   ];
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : value
+      [name]: type === "checkbox" ? checked : value,
     }));
   };
 
   const handleGenreChange = (genre) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
       favoriteGenres: prev.favoriteGenres.includes(genre)
-        ? prev.favoriteGenres.filter(g => g !== genre)
-        : [...prev.favoriteGenres, genre]
+        ? prev.favoriteGenres.filter((g) => g !== genre)
+        : [...prev.favoriteGenres, genre],
     }));
   };
 
   const validateForm = () => {
     const newErrors = {};
-    
-    if (!formData.firstName.trim()) newErrors.firstName = 'First name is required';
-    if (!formData.lastName.trim()) newErrors.lastName = 'Last name is required';
-    if (!formData.email.trim()) newErrors.email = 'Email is required';
-    else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = 'Email is invalid';
-    if (!formData.password) newErrors.password = 'Password is required';
-    else if (formData.password.length < 8) newErrors.password = 'Password must be at least 8 characters';
-    if (formData.password !== formData.confirmPassword) newErrors.confirmPassword = 'Passwords do not match';
-    if (!formData.terms) newErrors.terms = 'You must accept the terms and conditions';
+
+    if (!formData.firstName.trim())
+      newErrors.firstName = "First name is required";
+    if (!formData.lastName.trim()) newErrors.lastName = "Last name is required";
+    if (!formData.email.trim()) newErrors.email = "Email is required";
+    else if (!/\S+@\S+\.\S+/.test(formData.email))
+      newErrors.email = "Email is invalid";
+    if (!formData.password) newErrors.password = "Password is required";
+    else if (formData.password.length < 8)
+      newErrors.password = "Password must be at least 8 characters";
+    if (formData.password !== formData.confirmPassword)
+      newErrors.confirmPassword = "Passwords do not match";
+    if (!formData.terms)
+      newErrors.terms = "You must accept the terms and conditions";
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -61,8 +83,8 @@ export default function BookstoreSignup() {
 
   const handleSubmit = () => {
     if (validateForm()) {
-      console.log('Account created:', formData);
-      alert('Account created successfully! Welcome to our bookstore family!');
+      console.log("Account created:", formData);
+      alert("Account created successfully! Welcome to our bookstore family!");
     }
   };
 
@@ -80,7 +102,9 @@ export default function BookstoreSignup() {
             Join Our Book Community
           </h1>
           <p className="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto">
-            Create your account and discover your next favorite book. Enjoy personalized recommendations, exclusive offers, and join our community of book lovers.
+            Create your account and discover your next favorite book. Enjoy
+            personalized recommendations, exclusive offers, and join our
+            community of book lovers.
           </p>
         </div>
 
@@ -97,7 +121,7 @@ export default function BookstoreSignup() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                      First Name 
+                      First Name
                     </label>
                     <input
                       type="text"
@@ -105,15 +129,19 @@ export default function BookstoreSignup() {
                       value={formData.firstName}
                       onChange={handleInputChange}
                       className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-800 focus:outline-none transition-colors ${
-                        errors.firstName ? 'border-blue-500' : 'border-gray-300'
+                        errors.firstName ? "border-blue-500" : "border-gray-300"
                       }`}
                       placeholder="John"
                     />
-                    {errors.firstName && <p className="text-blue-500 text-sm mt-1">{errors.firstName}</p>}
+                    {errors.firstName && (
+                      <p className="text-blue-500 text-sm mt-1">
+                        {errors.firstName}
+                      </p>
+                    )}
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Last Name 
+                      Last Name
                     </label>
                     <input
                       type="text"
@@ -121,11 +149,15 @@ export default function BookstoreSignup() {
                       value={formData.lastName}
                       onChange={handleInputChange}
                       className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-800 focus:outline-none transition-colors ${
-                        errors.lastName ? 'border-blue-500' : 'border-gray-300'
+                        errors.lastName ? "border-blue-500" : "border-gray-300"
                       }`}
                       placeholder="Doe"
                     />
-                    {errors.lastName && <p className="text-blue-500 text-sm mt-1">{errors.lastName}</p>}
+                    {errors.lastName && (
+                      <p className="text-blue-500 text-sm mt-1">
+                        {errors.lastName}
+                      </p>
+                    )}
                   </div>
                 </div>
               </div>
@@ -147,11 +179,15 @@ export default function BookstoreSignup() {
                       value={formData.email}
                       onChange={handleInputChange}
                       className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-800 transition-colors ${
-                        errors.email ? 'border-blue-500' : 'border-gray-300'
+                        errors.email ? "border-blue-500" : "border-gray-300"
                       }`}
                       placeholder="john.doe@example.com"
                     />
-                    {errors.email && <p className="text-blue-500 text-sm mt-1">{errors.email}</p>}
+                    {errors.email && (
+                      <p className="text-blue-500 text-sm mt-1">
+                        {errors.email}
+                      </p>
+                    )}
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -172,56 +208,7 @@ export default function BookstoreSignup() {
                 </div>
               </div>
 
-              {/* Address */}
-              <div>
-                <h2 className="text-xl font-semibold text-gray-800 mb-4 flex items-center">
-                  <MapPin className="h-5 w-5 mr-2 text-blue-800" />
-                  Address (Optional)
-                </h2>
-                <div className="space-y-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Street Address
-                    </label>
-                    <input
-                      type="text"
-                      name="address"
-                      value={formData.address}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-800 focus:outline-none transition-colors"
-                      placeholder="Gautam Buddha Nagar"
-                    />
-                  </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        City
-                      </label>
-                      <input
-                        type="text"
-                        name="city"
-                        value={formData.city}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-800 focus:outline-none transition-colors"
-                        placeholder="Noida"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        ZIP Code
-                      </label>
-                      <input
-                        type="text"
-                        name="zipCode"
-                        value={formData.zipCode}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-800 transition-colors"
-                        placeholder="10001"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
+             
 
               {/* Security */}
               <div>
@@ -232,7 +219,7 @@ export default function BookstoreSignup() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Password 
+                      Password
                     </label>
                     <div className="relative">
                       <input
@@ -241,7 +228,9 @@ export default function BookstoreSignup() {
                         value={formData.password}
                         onChange={handleInputChange}
                         className={`w-full px-4 py-3 pr-12 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-800  transition-colors ${
-                          errors.password ? 'border-blue-500' : 'border-gray-300'
+                          errors.password
+                            ? "border-blue-500"
+                            : "border-gray-300"
                         }`}
                         placeholder="Create a strong password"
                       />
@@ -250,10 +239,18 @@ export default function BookstoreSignup() {
                         onClick={() => setShowPassword(!showPassword)}
                         className="absolute right-3 top-3 text-gray-400 hover:text-gray-600"
                       >
-                        {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                        {showPassword ? (
+                          <EyeOff className="h-5 w-5" />
+                        ) : (
+                          <Eye className="h-5 w-5" />
+                        )}
                       </button>
                     </div>
-                    {errors.password && <p className="text-blue-500 text-sm mt-1">{errors.password}</p>}
+                    {errors.password && (
+                      <p className="text-blue-500 text-sm mt-1">
+                        {errors.password}
+                      </p>
+                    )}
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -266,19 +263,31 @@ export default function BookstoreSignup() {
                         value={formData.confirmPassword}
                         onChange={handleInputChange}
                         className={`w-full px-4 py-3 pr-12 border rounded-lg  focus:outline-none focus:ring-2 focus:ring-blue-800 transition-colors ${
-                          errors.confirmPassword ? 'border-blue-500' : 'border-gray-300'
+                          errors.confirmPassword
+                            ? "border-blue-500"
+                            : "border-gray-300"
                         }`}
                         placeholder="Confirm your password"
                       />
                       <button
                         type="button"
-                        onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                        onClick={() =>
+                          setShowConfirmPassword(!showConfirmPassword)
+                        }
                         className="absolute right-3 top-3 text-gray-400 hover:text-gray-600"
                       >
-                        {showConfirmPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                        {showConfirmPassword ? (
+                          <EyeOff className="h-5 w-5" />
+                        ) : (
+                          <Eye className="h-5 w-5" />
+                        )}
                       </button>
                     </div>
-                    {errors.confirmPassword && <p className="text-red-500 text-sm mt-1">{errors.confirmPassword}</p>}
+                    {errors.confirmPassword && (
+                      <p className="text-red-500 text-sm mt-1">
+                        {errors.confirmPassword}
+                      </p>
+                    )}
                   </div>
                 </div>
               </div>
@@ -294,7 +303,10 @@ export default function BookstoreSignup() {
                   </label>
                   <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
                     {genres.map((genre) => (
-                      <label key={genre} className="flex items-center space-x-2 cursor-pointer">
+                      <label
+                        key={genre}
+                        className="flex items-center space-x-2 cursor-pointer"
+                      >
                         <input
                           type="checkbox"
                           checked={formData.favoriteGenres.includes(genre)}
@@ -319,7 +331,8 @@ export default function BookstoreSignup() {
                     className="w-4 h-4 text-amber-600 border-gray-300 rounded focus:ring-amber-500"
                   />
                   <span className="text-sm text-gray-700">
-                    Subscribe to our newsletter for book recommendations and exclusive offers
+                    Subscribe to our newsletter for book recommendations and
+                    exclusive offers
                   </span>
                 </label>
 
@@ -332,18 +345,20 @@ export default function BookstoreSignup() {
                     className="w-4 h-4  border-gray-300 rounded mt-0.5"
                   />
                   <span className="text-sm text-gray-700">
-                    I agree to the{' '}
+                    I agree to the{" "}
                     <a href="#" className="text-blue-800 underline">
                       Terms of Service
-                    </a>{' '}
-                    and{' '}
+                    </a>{" "}
+                    and{" "}
                     <a href="#" className="text-blue-800 underline">
                       Privacy Policy
                     </a>
                     *
                   </span>
                 </label>
-                {errors.terms && <p className="text-blue-800 text-sm">{errors.terms}</p>}
+                {errors.terms && (
+                  <p className="text-blue-800 text-sm">{errors.terms}</p>
+                )}
               </div>
 
               {/* Submit Button */}
@@ -354,12 +369,22 @@ export default function BookstoreSignup() {
                 >
                   Create My Account
                 </button>
+
+                {/* Already have account message */}
+                <p className="mt-4 text-center text-sm text-gray-600">
+                  Already have an account?{" "}
+                  <Link
+                    to="/login"
+                    className="text-blue-800 font-medium hover:underline"
+                  >
+                    Log In
+                  </Link>
+                </p>
               </div>
+              
             </div>
           </div>
         </div>
-
-       
       </div>
     </div>
   );

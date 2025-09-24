@@ -130,15 +130,11 @@ export default function BenefitsSection() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link to="/signup">
                 <button className="bg-blue-800 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-blue-900 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105">
-                  Sign up
+                  Explore More Books
                 </button>
               </Link>
 
-              <Link to="/login">
-                <button className="border-2 border--500 text-blue-800 px-8 py-4 rounded-full font-semibold text-lg hover:bg-amber-50 transition-all duration-300">
-                  Log In
-                </button>
-              </Link>
+           
             </div>
           </div>
         </div>

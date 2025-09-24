@@ -6,7 +6,8 @@ import { HiMiniHome } from "react-icons/hi2";
 import { GiSpellBook } from "react-icons/gi";
 import { MdOutlineDashboard } from "react-icons/md";
 import { MdOutlinePermPhoneMsg } from "react-icons/md";
-import { FaChevronRight } from "react-icons/fa"; // Added missing import
+// import { HiMenu } from "react-icons/hi";
+import { FaChevronRight } from "react-icons/fa";
 
 export default function AdminLayout({ children }) {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -21,57 +22,66 @@ export default function AdminLayout({ children }) {
   // Close nav when clicking outside on mobile
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (isNavOpen && !event.target.closest('aside') && !event.target.closest('button[type="button"]')) {
+      if (
+        isNavOpen &&
+        !event.target.closest("aside") &&
+        !event.target.closest('button[type="button"]')
+      ) {
         setIsNavOpen(false);
       }
     };
 
-    document.addEventListener('click', handleClickOutside);
-    return () => document.removeEventListener('click', handleClickOutside);
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
   }, [isNavOpen]);
 
   return (
     <>
-      <main className="flex min-h-[100vh] bg-blue-900 max-w-[100vw] overflow-x-hidden text-[14px] relative">
-        {/* Overlay for mobile */}
+      <main className="flex min-h-[100vh] max-w-[100vw] overflow-x-hidden text-[14px] relative">
+        {/* Overlay for mobile/tablet */}
         {isNavOpen && (
-          <div 
-            className="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden"
+          <div
+            className="fixed inset-0 bg-blue-900 bg-opacity-10 lg:hidden"
             onClick={() => setIsNavOpen(false)}
           />
         )}
-        
+
         <aside
           className={`
-            /* Desktop styles */
-            md:w-[250px] md:min-w-[250px] md:min-h-[100vh] md:static md:translate-x-0
+            /* Desktop styles (xl and above) */
+            xl:w-[250px] xl:min-w-[250px] xl:min-h-[100vh] xl:static xl:translate-x-0
             
-            /* Mobile styles */
+            /* Large desktop styles */
+            lg:w-[220px] lg:min-w-[220px] lg:min-h-[100vh] lg:static lg:translate-x-0
+            
+            /* Mobile/tablet styles */
             w-[280px] sm:w-[300px] xs:w-[250px]
             fixed left-0 top-[60px] bottom-0
-            bg-tl_primary text-white shadow-md shadow-gray-400 font-[600]
+            bg-blue-900 text-white shadow-md shadow-gray-400 font-[600]
             transition-transform duration-300 ease-in-out z-50
             overflow-y-auto
             
-            ${isNavOpen ? "translate-x-0" : "-translate-x-full"}
+            ${
+              isNavOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
+            }
           `}
         >
           <Link
             to={"/admin/home"}
-            className="w-[180px] mx-auto my-4 md:block hidden overflow-hidden"
+            className="w-[180px] mx-auto my-4 lg:block hidden overflow-hidden"
           >
-            <span className="text-xl font-bold text-white lg:text-xl md:text-lg sm:text-base">
+            <span className="text-white font-bold 2xl:text-xl xl:text-lg lg:text-base">
               Gloomshine Book Store
             </span>
           </Link>
-          
-          {/* Mobile logo in sidebar */}
-          <div className="md:hidden px-4 py-4 border-b border-tl_primary_shade/30">
-            <span className="text-lg font-bold text-white">
+
+          {/* Mobile/tablet logo in sidebar */}
+          <div className="lg:hidden px-4 py-4 border-b border-blue-700/30">
+            <span className="text-white font-bold text-lg sm:text-xl">
               Gloomshine Book Store
             </span>
           </div>
-          
+
           <nav className="list-none pb-4">
             {links.map((item, i) => (
               <NavItem
@@ -84,60 +94,60 @@ export default function AdminLayout({ children }) {
             ))}
           </nav>
         </aside>
-        
-        <section className="md:w-[calc(100vw-250px)] w-full flex-grow flex flex-col min-h-screen">
-          <header className="w-full h-[60px] shadow shadow-gray-200 flex items-center justify-between px-4 md:px-8  z-[51] bg-white sticky top-0">
-            <div className="flex items-center gap-3 md:gap-6 h-full">
-              {/* Mobile hamburger button */}
+
+        <section className="lg:w-[calc(100vw-220px)] xl:w-[calc(100vw-250px)] w-full flex-grow flex flex-col min-h-screen">
+          <header className="w-full h-[60px] shadow shadow-gray-200 flex items-center justify-between px-4 sm:px-6 md:px-8 lg:px-6 xl:px-8 z-[51] bg-white sticky top-0">
+            <div className="flex items-center gap-3 md:gap-4 lg:gap-6 h-full">
+              {/* Mobile/tablet hamburger button */}
               <button
                 type="button"
                 onClick={() => setIsNavOpen((prev) => !prev)}
-                className="p-2 md:hidden w-[35px] h-[35px] flex flex-col justify-center relative bg-transparent border-0 focus:outline-none"
+                className="p-2 font-bold text-gray-900 lg:hidden w-[35px] h-[35px] flex flex-col justify-center relative border-0 focus:outline-none"
                 aria-label="Toggle navigation"
               >
                 <div
-                  className={`w-[20px] h-[2px] bg-tl_primary rounded-sm transition-all duration-300 absolute ${
+                  className={`w-[20px] h-[2px] bg-blue-800 rounded-sm transition-all duration-300 absolute ${
                     isNavOpen
                       ? "rotate-45 translate-y-0"
                       : "rotate-0 -translate-y-1"
                   }`}
                 />
                 <div
-                  className={`w-[20px] h-[2px] bg-tl_primary rounded-sm transition-all duration-300 ${
+                  className={`w-[20px] h-[2px] bg-blue-800 rounded-sm transition-all duration-300 ${
                     isNavOpen ? "opacity-0" : "opacity-100"
                   }`}
                 />
                 <div
-                  className={`w-[20px] h-[2px] bg-tl_primary rounded-sm transition-all duration-300 absolute ${
+                  className={`w-[20px] h-[2px] bg-blue-800 rounded-sm transition-all duration-300 absolute ${
                     isNavOpen
                       ? "-rotate-45 translate-y-0"
                       : "rotate-0 translate-y-1"
                   }`}
                 />
               </button>
-              
+
               {/* Desktop title */}
-              <div className="hidden md:block">
-                <p className="font-[600] text-gray-500 text-sm lg:text-base">
+              <div className="hidden lg:block">
+                <p className="font-[600] text-gray-500 text-sm xl:text-base 2xl:text-lg">
                   Admin
                 </p>
               </div>
-              
-              {/* Mobile title */}
-              <div className="md:hidden">
-                <p className="font-[600] text-gray-800 text-sm sm:text-base truncate max-w-[200px] xs:max-w-[150px]">
+
+              {/* Mobile/tablet title */}
+              <div className="lg:hidden">
+                <p className="font-[600] text-gray-800 text-sm sm:text-base md:text-lg truncate max-w-[150px] xs:max-w-[180px] sm:max-w-[200px] md:max-w-[250px]">
                   Admin Panel
                 </p>
               </div>
             </div>
-            
+
             {/* Optional: Add user info or actions on the right */}
             <div className="flex items-center">
               {/* You can add user avatar, notifications, etc. here */}
             </div>
           </header>
-          
-          <section className="w-full p-4 md:p-6 lg:p-8 text-gray-600 bg-gray-100 min-h-[calc(100vh-60px)] flex-grow">
+
+          <section className="w-full p-3 sm:p-4 md:p-6 lg:p-4 xl:p-6 2xl:p-8 text-gray-600 bg-gray-100 min-h-[calc(100vh-60px)] flex-grow">
             {children}
           </section>
         </section>
@@ -177,19 +187,19 @@ const NavItem = ({
       >
         <li
           className={`
-            flex items-center gap-3 px-4 md:px-6
-            border-t border-tl_primary_shade/30 
-            hover:bg-tl_primary_shade/30 
+            flex items-center gap-2 sm:gap-3 px-3 sm:px-4 lg:px-4 xl:px-6
+            border-t border-blue-700/30 
+            hover:bg-blue-700/30 
             transition-all duration-500 
-            h-[50px] md:h-[60px] mb-0 
-            text-sm md:text-[14px]
+            h-[45px] sm:h-[50px] lg:h-[55px] xl:h-[60px] mb-0 
+            text-xs sm:text-sm lg:text-[13px] xl:text-[14px] 2xl:text-base
             ${
               data.to
                 ? activeDrop.includes(data.to) || pathname.includes(data.to)
-                  ? "bg-tl_primary_shade/30"
+                  ? "bg-blue-700/30"
                   : ""
                 : pathname === "/admin/"
-                ? "bg-tl_primary_shade/30"
+                ? "bg-blue-700/30"
                 : ""
             } ${classNames}
           `}
@@ -198,7 +208,7 @@ const NavItem = ({
           {data.icon && <NavItemIcon icon={data.icon} />}
           <span className="flex-grow">{data.name}</span>
           <FaChevronRight
-            className={`transition-all duration-300 font-[700] text-xs ${
+            className={`transition-all duration-300 font-[700] text-[10px] sm:text-xs ${
               activeDrop.includes(data.to) ? "rotate-90" : "rotate-0"
             }`}
           />
@@ -208,7 +218,15 @@ const NavItem = ({
         className="transition-all duration-300 overflow-hidden"
         style={{
           maxHeight: activeDrop.includes(data.to)
-            ? data.links.length * 50 + "px"
+            ? data.links.length *
+                (window.innerWidth >= 1280
+                  ? 60
+                  : window.innerWidth >= 1024
+                  ? 55
+                  : window.innerWidth >= 640
+                  ? 50
+                  : 45) +
+              "px"
             : "0px",
         }}
       >
@@ -216,7 +234,7 @@ const NavItem = ({
           <NavItem
             key={i}
             data={item}
-            classNames="!ps-8 md:!ps-12"
+            classNames="!ps-6 sm:!ps-8 lg:!ps-8 xl:!ps-12"
             activeDrop={activeDrop}
             setActiveDrop={setActiveDrop}
             pathname={pathname}
@@ -232,20 +250,20 @@ const NavItem = ({
     >
       <li
         className={`
-          flex items-center gap-3 px-4 md:px-6
-          h-[50px] md:h-[60px] 
-          border-t border-tl_primary_shade/30 
-          hover:bg-tl_primary_shade/30 
+          flex items-center gap-2 sm:gap-3 px-3 sm:px-4 lg:px-4 xl:px-6
+          h-[45px] sm:h-[50px] lg:h-[55px] xl:h-[60px] 
+          border-t border-blue-700/30 
+          hover:bg-blue-700/30 
           transition-all duration-500 
           mb-0 admin-panel-nav-link
-          text-sm md:text-[14px]
+          text-xs sm:text-sm lg:text-[13px] xl:text-[14px] 2xl:text-base
           ${
             data.to
               ? pathname.includes(data.to)
-                ? "bg-tl_primary_shade/30 active-admin-panel-nav-link"
+                ? "bg-blue-700/30 active-admin-panel-nav-link"
                 : ""
               : pathname === "/admin/"
-              ? "bg-tl_primary_shade/30"
+              ? "bg-blue-700/30"
               : ""
           } ${classNames}
         `}
@@ -259,7 +277,11 @@ const NavItem = ({
 };
 
 const NavItemIcon = ({ icon }) => {
-  return <span className="text-[16px] md:text-[18px] flex-shrink-0">{icon}</span>;
+  return (
+    <span className="text-[14px] sm:text-[16px] lg:text-[16px] xl:text-[18px] 2xl:text-[20px] flex-shrink-0">
+      {icon}
+    </span>
+  );
 };
 
 const links = [

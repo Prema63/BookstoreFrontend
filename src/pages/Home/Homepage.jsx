@@ -11,7 +11,7 @@ const Homepage = () => {
         <Banner/>
         <Category/>
         <Book/>
-        <Benefits/>
+        {/* <Benefits/> */}
         <Newsletter/>
     </div>
   )
