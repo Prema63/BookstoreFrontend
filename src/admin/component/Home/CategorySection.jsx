@@ -35,7 +35,7 @@ export default function CategorySection() {
   };
 
   return (
-    <div className="w-full max-w-7xl mx-auto mt-4">
+    <div className="w-full max-w-6xl mx-auto mt-4">
       <div className="bg-white border border-gray-200 rounded-lg shadow-sm">
         {/* Header */}
         <div

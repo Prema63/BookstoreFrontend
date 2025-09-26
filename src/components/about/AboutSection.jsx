@@ -3,16 +3,45 @@ import { BookOpen, Heart, Users, Award, Truck, Coffee, Calendar, Star, MapPin, P
 import BenefitsSection from '../Home/Benefits';
 
 const AboutSection = () => {
-  const bookCategories = [
-    { name: 'Fiction & Literature', description: 'Classic novels, contemporary fiction, and literary masterpieces' },
-    { name: 'Non-Fiction', description: 'Biographies, history, science, and self-help books' },
-    { name: 'Children\'s Books', description: 'Picture books, young adult novels, and educational materials' },
-    { name: 'Academic & Textbooks', description: 'Educational resources for students and professionals' },
-    { name: 'Art & Design', description: 'Coffee table books, art history, and design inspiration' },
-    { name: 'Technology & Programming', description: 'Latest tech trends and programming guides' },
-    { name: 'Health & Wellness', description: 'Fitness, nutrition, mental health, and lifestyle books' },
-    { name: 'Travel & Adventure', description: 'Travel guides, maps, and adventure stories' }
-  ];
+const bookCategories = [
+  { 
+    name: 'Fiction', 
+    description: 'Classic novels, contemporary fiction, and literary masterpieces.' 
+  },
+  { 
+    name: 'Non-Fiction', 
+    description: 'Biographies, history, science, self-help, and real-world accounts.' 
+  },
+  { 
+    name: 'Romance', 
+    description: 'Love stories, contemporary romance, and timeless romantic classics.' 
+  },
+  {   
+    name: 'Sci-Fi', 
+    description: 'Science fiction exploring futuristic technology, space, and adventures.' 
+  },
+  { 
+    name: 'Fantasy', 
+    description: 'Magical worlds, epic quests, mythical creatures, and heroic tales.' 
+  },
+  { 
+    name: 'Novel', 
+    description: 'General novels across various genres and storytelling styles.' 
+  },
+  { 
+    name: 'Motivational', 
+    description: 'Inspiring stories, personal growth, and self-improvement books.' 
+  },
+  { 
+    name: 'Poetry', 
+    description: 'Collections of poems, verses, and lyrical expressions of emotion.' 
+  },
+  { 
+    name: 'Young Adult', 
+    description: 'Coming-of-age stories, adventures, and themes for teen readers.' 
+  },
+];
+ 
 
   const services = [
     {
@@ -66,7 +95,7 @@ const AboutSection = () => {
             </div>
           </div>
           <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-            Welcome to <span className="text-blue-800">BookHaven</span>
+            Welcome to <span className="text-blue-800">BookStore</span>
           </h1>
           <p className="text-xl md:text-2xl text-gray-700 mb-8 max-w-3xl mx-auto leading-relaxed">
             Where every page tells a story, and every story finds its reader. 

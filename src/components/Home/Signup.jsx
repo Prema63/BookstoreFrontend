@@ -129,12 +129,12 @@ export default function BookstoreSignup() {
                       value={formData.firstName}
                       onChange={handleInputChange}
                       className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-800 focus:outline-none transition-colors ${
-                        errors.firstName ? "border-blue-500" : "border-gray-300"
+                        errors.firstName ? "border-red-500" : "border-gray-300"
                       }`}
                       placeholder="John"
                     />
                     {errors.firstName && (
-                      <p className="text-blue-500 text-sm mt-1">
+                      <p className="text-red-500 text-sm mt-1">
                         {errors.firstName}
                       </p>
                     )}
@@ -149,12 +149,12 @@ export default function BookstoreSignup() {
                       value={formData.lastName}
                       onChange={handleInputChange}
                       className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-800 focus:outline-none transition-colors ${
-                        errors.lastName ? "border-blue-500" : "border-gray-300"
+                        errors.lastName ? "border-red-500" : "border-gray-300"
                       }`}
                       placeholder="Doe"
                     />
                     {errors.lastName && (
-                      <p className="text-blue-500 text-sm mt-1">
+                      <p className="text-red-500 text-sm mt-1">
                         {errors.lastName}
                       </p>
                     )}
@@ -179,12 +179,12 @@ export default function BookstoreSignup() {
                       value={formData.email}
                       onChange={handleInputChange}
                       className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-800 transition-colors ${
-                        errors.email ? "border-blue-500" : "border-gray-300"
+                        errors.email ? "border-red-500" : "border-gray-300"
                       }`}
                       placeholder="john.doe@example.com"
                     />
                     {errors.email && (
-                      <p className="text-blue-500 text-sm mt-1">
+                      <p className="text-red-500 text-sm mt-1">
                         {errors.email}
                       </p>
                     )}
@@ -229,7 +229,7 @@ export default function BookstoreSignup() {
                         onChange={handleInputChange}
                         className={`w-full px-4 py-3 pr-12 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-800  transition-colors ${
                           errors.password
-                            ? "border-blue-500"
+                            ? "border-red-500"
                             : "border-gray-300"
                         }`}
                         placeholder="Create a strong password"
@@ -247,7 +247,7 @@ export default function BookstoreSignup() {
                       </button>
                     </div>
                     {errors.password && (
-                      <p className="text-blue-500 text-sm mt-1">
+                      <p className="text-red-500 text-sm mt-1">
                         {errors.password}
                       </p>
                     )}

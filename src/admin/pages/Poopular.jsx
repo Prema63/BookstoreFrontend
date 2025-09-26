@@ -1,12 +1,15 @@
-import React from 'react'
-import AllBook from '../component/books/AllBooks'
+import React from "react";
+import AllBook from "../component/books/AllBooks";
 
 const Poopular = () => {
   return (
     <div>
-      <AllBook/>
+      <h1 className="text-2xl font-semibold py-3">Poplular Books Management</h1>
+      <div className="w-full max-w-7xl border border-gray-200 py-6 rounded">
+        <AllBook />
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Poopular
+export default Poopular;

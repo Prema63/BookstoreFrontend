@@ -42,7 +42,7 @@ export default function AdminBannerSection() {
   };
 
   return (
-    <div className="w-full max-w-7xl mx-auto bg-white border border-gray-200 rounded-lg shadow-sm">
+    <div className="w-full max-w-6xl mx-auto bg-white border border-gray-200 rounded-lg shadow-sm">
       {/* Header */}
       <div
         className="flex items-center justify-between p-4 bg-gray-50 border-b border-gray-200 cursor-pointer hover:bg-gray-100 transition-colors"

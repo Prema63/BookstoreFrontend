@@ -1,16 +1,20 @@
-import React from 'react'
-import BannerSection from '../component/Home/BannerSection'
-import CategorySection from '../component/Home/CategorySection'
-import FeaturedBook from '../component/Home/FeaturedBook';
+import React from "react";
+import BannerSection from "../component/Home/BannerSection";
+import CategorySection from "../component/Home/CategorySection";
+import FeaturedBook from "../component/Home/FeaturedBook";
 
 const Home = () => {
   return (
     <div>
-        <BannerSection/>
-        <CategorySection/>
-        <FeaturedBook/>
+      <h1 className="text-2xl font-semibold py-3">Home Page Management</h1>
+      <div className="w-full max-w-7xl border border-gray-200 py-6 rounded">
+        <BannerSection />
+        <CategorySection />
+        <FeaturedBook />
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+
+export default Home;

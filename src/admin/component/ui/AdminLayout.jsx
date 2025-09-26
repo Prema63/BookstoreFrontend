@@ -6,7 +6,6 @@ import { HiMiniHome } from "react-icons/hi2";
 import { GiSpellBook } from "react-icons/gi";
 import { MdOutlineDashboard } from "react-icons/md";
 import { MdOutlinePermPhoneMsg } from "react-icons/md";
-// import { HiMenu } from "react-icons/hi";
 import { FaChevronRight } from "react-icons/fa";
 
 export default function AdminLayout({ children }) {
@@ -37,7 +36,7 @@ export default function AdminLayout({ children }) {
 
   return (
     <>
-      <main className="flex min-h-[100vh] max-w-[100vw] overflow-x-hidden text-[14px] relative">
+      <main className="flex h-screen max-w-[100vw] overflow-hidden text-[14px] relative">
         {/* Overlay for mobile/tablet */}
         {isNavOpen && (
           <div
@@ -49,10 +48,10 @@ export default function AdminLayout({ children }) {
         <aside
           className={`
             /* Desktop styles (xl and above) */
-            xl:w-[250px] xl:min-w-[250px] xl:min-h-[100vh] xl:static xl:translate-x-0
+            xl:w-[250px] xl:min-w-[250px] xl:h-screen xl:static xl:translate-x-0
             
             /* Large desktop styles */
-            lg:w-[220px] lg:min-w-[220px] lg:min-h-[100vh] lg:static lg:translate-x-0
+            lg:w-[220px] lg:min-w-[220px] lg:h-screen lg:static lg:translate-x-0
             
             /* Mobile/tablet styles */
             w-[280px] sm:w-[300px] xs:w-[250px]
@@ -65,7 +64,20 @@ export default function AdminLayout({ children }) {
               isNavOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
             }
           `}
+          style={{
+            /* Hide scrollbar but keep functionality */
+            scrollbarWidth: 'none', /* Firefox */
+            msOverflowStyle: 'none', /* IE and Edge */
+            WebkitScrollbar: 'none' /* Chrome, Safari */
+          }}
         >
+          {/* Add CSS for webkit browsers */}
+          {/* <style jsx>{`
+            aside::-webkit-scrollbar {
+              display: none;
+            }
+          `}</style> */}
+          
           <Link
             to={"/admin/home"}
             className="w-[180px] mx-auto my-4 lg:block hidden overflow-hidden"
@@ -95,8 +107,8 @@ export default function AdminLayout({ children }) {
           </nav>
         </aside>
 
-        <section className="lg:w-[calc(100vw-220px)] xl:w-[calc(100vw-250px)] w-full flex-grow flex flex-col min-h-screen">
-          <header className="w-full h-[60px] shadow shadow-gray-200 flex items-center justify-between px-4 sm:px-6 md:px-8 lg:px-6 xl:px-8 z-[51] bg-white sticky top-0">
+        <section className="lg:w-[calc(100vw-220px)] xl:w-[calc(100vw-250px)] w-full flex-grow flex flex-col h-screen">
+          <header className="w-full h-[60px] shadow shadow-gray-200 flex items-center justify-between px-4 sm:px-6 md:px-8 lg:px-6 xl:px-8 z-[51] bg-white flex-shrink-0">
             <div className="flex items-center gap-3 md:gap-4 lg:gap-6 h-full">
               {/* Mobile/tablet hamburger button */}
               <button
@@ -147,7 +159,20 @@ export default function AdminLayout({ children }) {
             </div>
           </header>
 
-          <section className="w-full p-3 sm:p-4 md:p-6 lg:p-4 xl:p-6 2xl:p-8 text-gray-600 bg-gray-100 min-h-[calc(100vh-60px)] flex-grow">
+          <section 
+            className="w-full p-3 sm:p-4 md:p-6 lg:p-4 xl:p-6 2xl:p-8 text-gray-600 bg-gray-100 flex-grow overflow-y-auto"
+            style={{
+              /* Hide scrollbar but keep functionality */
+              scrollbarWidth: 'none', /* Firefox */
+              msOverflowStyle: 'none', /* IE and Edge */
+            }}
+          >
+            {/* Add CSS for webkit browsers */}
+            <style jsx>{`
+              section::-webkit-scrollbar {
+                display: none;
+              }
+            `}</style>
             {children}
           </section>
         </section>

@@ -65,6 +65,6 @@ export const faqData = [
   },
   {
     question: "how can I recover my account",
-    answer: "You can contact us via the 'Contact Us' page, you got email or Phone Number."
+    answer: "You can't Recover your account."
   }
 ];
