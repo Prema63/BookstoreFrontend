@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { ShoppingCart, Menu, X,  } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { ShoppingCart, Menu, X } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,29 +23,50 @@ const Navbar = () => {
 
           {/* Desktop & Large Tablet Navigation Links */}
           <div className="hidden lg:flex items-center space-x-8">
-            <Link to="/" className="text-gray-700 hover:text-blue-800 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+            <Link
+              to="/"
+              className="text-gray-700 hover:text-blue-800 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+            >
               Home
             </Link>
-            <Link to="/popular" className="text-gray-700 hover:text-blue-800 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+            <Link
+              to="/popular"
+              className="text-gray-700 hover:text-blue-800 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+            >
               Popular
             </Link>
-            <Link to="/about" className="text-gray-700 hover:text-blue-800 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+            <Link
+              to="/about"
+              className="text-gray-700 hover:text-blue-800 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+            >
               About Us
             </Link>
-            <Link to="/contact" className="text-gray-700 hover:text-blue-800 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+            <Link
+              to="/contact"
+              className="text-gray-700 hover:text-blue-800 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+            >
               Contact Us
             </Link>
           </div>
 
           {/* Tablet Navigation Links (condensed) */}
           <div className="hidden md:flex lg:hidden items-center space-x-4">
-            <Link to="/" className="text-gray-700 hover:text-blue-800 px-2 py-2 rounded-md text-sm font-medium transition-colors">
+            <Link
+              to="/"
+              className="text-gray-700 hover:text-blue-800 px-2 py-2 rounded-md text-sm font-medium transition-colors"
+            >
               Home
             </Link>
-            <Link to="/popular" className="text-gray-700 hover:text-blue-800 px-2 py-2 rounded-md text-sm font-medium transition-colors">
+            <Link
+              to="/popular"
+              className="text-gray-700 hover:text-blue-800 px-2 py-2 rounded-md text-sm font-medium transition-colors"
+            >
               Popular
             </Link>
-            <Link to="/about" className="text-gray-700 hover:text-blue-800 px-2 py-2 rounded-md text-sm font-medium transition-colors">
+            <Link
+              to="/about"
+              className="text-gray-700 hover:text-blue-800 px-2 py-2 rounded-md text-sm font-medium transition-colors"
+            >
               About
             </Link>
           </div>
@@ -53,9 +74,11 @@ const Navbar = () => {
           {/* Search Bar and Actions - Desktop */}
           <div className="hidden lg:flex items-center space-x-4">
             <div className="relative">
-              <button className="p-2 text-gray-700 hover:text-blue-800 transition-colors">
-                <ShoppingCart className="h-6 w-6" />
-              </button>
+              <Link to="/cart">
+                <button className="p-2 text-gray-700 hover:text-blue-800 transition-colors">
+                  <ShoppingCart className="h-6 w-6" />
+                </button>
+              </Link>
             </div>
 
             {/* Desktop Login/Signup Buttons */}
@@ -75,13 +98,13 @@ const Navbar = () => {
 
           {/* Tablet Search Bar and Actions (smaller) */}
           <div className="hidden md:flex lg:hidden items-center space-x-3">
-            
-            
             {/* Cart Icon */}
             <div className="relative">
-              <button className="p-2 text-gray-700 hover:text-blue-800 transition-colors">
-                <ShoppingCart className="h-5 w-5" />
-              </button>
+              <Link to="/cart">
+                <button className="p-2 text-gray-700 hover:text-blue-800 transition-colors">
+                  <ShoppingCart className="h-5 w-5" />
+                </button>
+              </Link>
             </div>
 
             {/* Tablet Login/Signup Buttons (smaller) */}
@@ -102,21 +125,26 @@ const Navbar = () => {
           {/* Mobile menu button and icons */}
           <div className="md:hidden flex items-center space-x-2 sm:space-x-4">
             {/* Mobile Search Icon */}
-            
-            
+
             {/* Mobile Cart Icon */}
             <div className="relative">
-              <button className="p-2 text-gray-700 hover:text-blue-800 transition-colors">
-                <ShoppingCart className="h-5 w-5 sm:h-6 sm:w-6" />
-              </button>
+              <Link to="/cart">
+                <button className="p-2 text-gray-700 hover:text-blue-800 transition-colors">
+                  <ShoppingCart className="h-5 w-5 sm:h-6 sm:w-6" />
+                </button>
+              </Link>
             </div>
-            
+
             {/* Hamburger Menu */}
             <button
               onClick={toggleMenu}
               className="p-2 text-gray-700 hover:text-blue-800 transition-colors"
             >
-              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {isMenuOpen ? (
+                <X className="h-6 w-6" />
+              ) : (
+                <Menu className="h-6 w-6" />
+              )}
             </button>
           </div>
 
@@ -126,7 +154,11 @@ const Navbar = () => {
               onClick={toggleMenu}
               className="p-2 text-gray-700 hover:text-blue-800 transition-colors ml-2"
             >
-              {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              {isMenuOpen ? (
+                <X className="h-5 w-5" />
+              ) : (
+                <Menu className="h-5 w-5" />
+              )}
             </button>
           </div>
         </div>
@@ -159,11 +191,9 @@ const Navbar = () => {
               >
                 Contact Us
               </Link>
-              
+
               {/* Mobile Search Bar */}
-              <div className="px-3 py-2">
-             
-              </div>
+              <div className="px-3 py-2"></div>
 
               {/* Mobile Login/Signup Buttons */}
               <div className="px-3 py-2">
@@ -197,7 +227,6 @@ const Navbar = () => {
             </div>
           </div>
         )}
-
       </div>
     </nav>
   );
