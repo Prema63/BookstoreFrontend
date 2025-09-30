@@ -5,26 +5,42 @@ import {
   Upload,
   Image,
   Save,
-  RotateCcw
+  RotateCcw,
+  X
 } from "lucide-react";
+
+
 
 export default function AdminBannerSection() {
   const [isExpanded, setIsExpanded] = useState(false);
   const [bannerData, setBannerData] = useState({
-    image: null,
+    images: [],
     heading: "",
-    description: "",
+    buttonText1: "",
+    buttonText2: "",
   });
-  const [imagePreview, setImagePreview] = useState(null);
+  const [imagePreviews, setImagePreviews] = useState([]);
 
   const handleImageUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setBannerData({ ...bannerData, image: file });
-      const reader = new FileReader();
-      reader.onload = (e) => setImagePreview(e.target.result);
-      reader.readAsDataURL(file);
+    const files = Array.from(e.target.files);
+    if (files.length > 0) {
+      setBannerData({ ...bannerData, images: [...bannerData.images, ...files] });
+      
+      files.forEach(file => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          setImagePreviews(prev => [...prev, e.target.result]);
+        };
+        reader.readAsDataURL(file);
+      });
     }
+  };
+
+  const removeImage = (index) => {
+    const newImages = bannerData.images.filter((_, i) => i !== index);
+    const newPreviews = imagePreviews.filter((_, i) => i !== index);
+    setBannerData({ ...bannerData, images: newImages });
+    setImagePreviews(newPreviews);
   };
 
   const handleInputChange = (field, value) => {
@@ -37,8 +53,8 @@ export default function AdminBannerSection() {
   };
 
   const handleReset = () => {
-    setBannerData({ image: null, heading: "", description: "" });
-    setImagePreview(null);
+    setBannerData({ images: [], heading: "", buttonText1: "", buttonText2: "" });
+    setImagePreviews([]);
   };
 
   return (
@@ -67,12 +83,19 @@ export default function AdminBannerSection() {
           <div className="flex items-center space-x-4">
             <div className="flex-shrink-0">
               <div className="w-16 h-12 bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center">
-                {imagePreview ? (
-                  <img
-                    src={imagePreview}
-                    alt="Banner"
-                    className="w-full h-full object-cover rounded"
-                  />
+                {imagePreviews.length > 0 ? (
+                  <div className="relative w-full h-full">
+                    <img
+                      src={imagePreviews[0]}
+                      alt="Banner"
+                      className="w-full h-full object-cover rounded"
+                    />
+                    {imagePreviews.length > 1 && (
+                      <div className="absolute top-0 right-0 bg-blue-800 text-white text-xs px-1 rounded-bl">
+                        +{imagePreviews.length - 1}
+                      </div>
+                    )}
+                  </div>
                 ) : (
                   <Image className="w-6 h-6 text-gray-400" />
                 )}
@@ -108,12 +131,13 @@ export default function AdminBannerSection() {
             {/* Image Upload */}
             <div className="space-y-2">
               <label className="block text-sm font-medium text-gray-700">
-                Banner Image
+                Banner Images
               </label>
               <div className="relative">
                 <input
                   type="file"
                   accept="image/*"
+                  multiple
                   onChange={handleImageUpload}
                   className="hidden"
                   id="banner-image"
@@ -123,14 +147,29 @@ export default function AdminBannerSection() {
                   className="block w-full h-32 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-blue-400 transition-colors"
                 >
                   <div className="flex flex-col items-center justify-center h-full">
-                    {imagePreview ? (
-                      <div className="relative w-full h-full">
-                        <img
-                          src={imagePreview}
-                          alt="Banner preview"
-                          className="w-full h-full object-cover rounded-lg"
-                        />
-                        <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity rounded-lg">
+                    {imagePreviews.length > 0 ? (
+                      <div className="relative w-full h-full p-2">
+                        <div className="grid grid-cols-3 gap-2 h-full overflow-auto">
+                          {imagePreviews?.map((preview, index) => (
+                            <div key={index} className="relative group">
+                              <img
+                                src={preview}
+                                alt={`Banner ${index + 1}`}
+                                className="w-full h-20 object-cover rounded"
+                              />
+                              <button
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  removeImage(index);
+                                }}
+                                className="absolute -top-1 -right-1 bg-red-500 text-white rounded-full p-1 transition-opacity"
+                              >
+                                <X className="w-3 h-3" />
+                              </button>
+                            </div>
+                          ))}
+                        </div>
+                        <div className="absolute  bg-opacity-30 flex items-center justify-center transition-opacity rounded-lg">
                           <Upload className="w-8 h-8 text-white" />
                         </div>
                       </div>
@@ -138,13 +177,18 @@ export default function AdminBannerSection() {
                       <>
                         <Upload className="w-8 h-8 text-gray-400 mb-2" />
                         <span className="text-sm text-gray-500">
-                          Click to upload image
+                          Click to upload images
                         </span>
                       </>
                     )}
                   </div>
                 </label>
               </div>
+              {imagePreviews.length > 0 && (
+                <p className="text-xs text-gray-500">
+                  {imagePreviews.length} image{imagePreviews.length > 1 ? 's' : ''} selected
+                </p>
+              )}
             </div>
 
             {/* Heading */}
@@ -164,20 +208,36 @@ export default function AdminBannerSection() {
 
           {/* Row 2 */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Description */}
-            <div className="space-y-2">
-              <label className="block text-sm font-medium text-gray-700">
-                Banner Description
-              </label>
-              <textarea
-                placeholder="Enter banner description"
-                value={bannerData.description}
-                onChange={(e) =>
-                  handleInputChange("description", e.target.value)
-                }
-                rows={4}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
-              />
+            {/* Button Texts */}
+            <div className="space-y-4">
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  First Button Text
+                </label>
+                <input
+                  type="text"
+                  placeholder="Enter first button text"
+                  value={bannerData.buttonText1}
+                  onChange={(e) =>
+                    handleInputChange("buttonText1", e.target.value)
+                  }
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-gray-700">
+                  Second Button Text
+                </label>
+                <input
+                  type="text"
+                  placeholder="Enter second button text"
+                  value={bannerData.buttonText2}
+                  onChange={(e) =>
+                    handleInputChange("buttonText2", e.target.value)
+                  }
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
             </div>
 
             {/* Action Buttons */}
@@ -201,7 +261,6 @@ export default function AdminBannerSection() {
               </button>
             </div>
           </div>
-
         </div>
       )}
     </div>

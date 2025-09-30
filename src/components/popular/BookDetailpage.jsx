@@ -99,8 +99,8 @@ const BookDetailsPage = ({ book, onBack, onBookClick }) => {
           {/* Book Image */}
           <div className="flex justify-center lg:justify-start">
             <div className="relative w-full max-w-sm">
-              <div className="w-full aspect-[2/3] bg-gradient-to-br from-gray-200 to-gray-300 rounded-xl shadow-lg flex items-center justify-center">
-                <Book className="w-16 h-16 sm:w-24 sm:h-24 text-gray-400" />
+              <div className="w-[40vw]  h-[95vh] ml-8 bg-gray-800 rounded-xl shadow-lg flex items-center justify-center">
+                {/* <Book className="w-16 h-16 sm:w-24 sm:h-24 text-gray-400" /> */}
               </div>
             </div>
           </div>

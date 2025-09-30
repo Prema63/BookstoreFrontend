@@ -124,13 +124,12 @@ const Everyone_talkingSection = () => {
             <h2 className="text-3xl sm:text-4xl lg:text-3xl font-bold text-gray-900 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text ">
               Everyone's Talking About
             </h2>
-           
           </div>
         </div>
 
         {/* Books Container */}
         <div className="relative">
-          {/* Navigation Arrows */}
+          {/* Arrows */}
           <button
             onClick={handlePrevious}
             disabled={currentIndex === 0}
@@ -199,13 +198,18 @@ const Everyone_talkingSection = () => {
 
                     {/* Book Info */}
                     <div className="relative z-10">
-                      <h3 className="font-semibold text-gray-900 text-xs sm:text-sm md:text-base mb-1 sm:mb-2 line-clamp-2 group-hover:text-blue-800 transition-colors duration-300 leading-tight">
-                        {book.title}
-                      </h3>
+                      <Link
+                        to={`/popular/bookdetails/${book.id}`}
+                        state={{ selectedBook: book }}
+                      >
+                        <h3 className="font-semibold text-gray-900 text-xs sm:text-sm md:text-base mb-1 sm:mb-2 line-clamp-2 group-hover:text-blue-800 transition-colors duration-300 leading-tight">
+                          {book.title}
+                        </h3>
 
-                      <p className="text-gray-600 text-xs sm:text-sm mb-2 sm:mb-3 group-hover:text-gray-700 transition-colors duration-300">
-                        {book.author}
-                      </p>
+                        <p className="text-gray-600 text-xs sm:text-sm mb-2 sm:mb-3 group-hover:text-gray-700 transition-colors duration-300">
+                          {book.author}
+                        </p>
+                      </Link>
                     </div>
                   </div>
                 </div>

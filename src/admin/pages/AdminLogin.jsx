@@ -29,16 +29,20 @@ export default function AdminLogin() {
     e.preventDefault();
   };
   return (
-    <>
-      <section className="min-w-[100vw] min-h-[100vh] flex items-center justify-center">
-        <div className="w-full h-full overflow-hidden absolute z-[-1]">
+    <section className="w-full h-screen flex items-center justify-center">
+      {/* main section */}
+      <div className="flex w-full h-full bg-white rounded-none shadow-md shadow-gray-400 overflow-hidden">
+        {/* Left section */}
+        <div className="hidden md:block w-1/2 h-full">
           <img
-            src="/assets/images/delight.jpg"
-            alt=""
-            className="object-cover lg:h-[140%] xl:h-[160%] h-full absolute left-1/2 -translate-x-1/2 filter blur-[2px]"
+            src="https://imgs.search.brave.com/bblpIKlXcvrP-P7-0-23pm8N410wGNnYZSVQLLJ3lyQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzJhLzQ3/L2JiLzJhNDdiYmQ2/OTExYmFiOTM3ZTkw/ZDkyMjk5OGJiNmIw/LmpwZw"
+            alt="Books"
+            className="object-cover h-full w-full"
           />
         </div>
-        <div className="p-4 rounded-md shadow-md shadow-gray-400 bg-white md:min-w-[600px] mx-4">
+
+        {/* Right section */}
+        <div className="p-4 w-full md:w-1/2 h-full flex flex-col justify-center">
           <div className="text-blue_1 flex justify-center">
             <div className="w-[300px]">
               <div className="flex items-center space-x-2">
@@ -48,6 +52,7 @@ export default function AdminLogin() {
               </div>
             </div>
           </div>
+
           <form
             onSubmit={handleSubmit}
             className="flex flex-col gap-6 sm:px-4 py-4"
@@ -79,6 +84,7 @@ export default function AdminLogin() {
                 />
               </div>
             )}
+
             <div>
               <label htmlFor="email">Password</label>
               <div className="relative flex">
@@ -100,6 +106,7 @@ export default function AdminLogin() {
                 </button>
               </div>
             </div>
+
             <button
               type="submit"
               className="p-2 rounded-md bg-blue-800 hover:bg-blue-900 border-0 text-white flex-grow"
@@ -108,7 +115,7 @@ export default function AdminLogin() {
             </button>
           </form>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }

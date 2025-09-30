@@ -110,12 +110,10 @@ const FeaturedBooks = () => {
 
   const handleViewDetails = (bookId) => {
     console.log(`Viewing details for book ${bookId}`);
-    // Navigation logic would go here in actual implementation
   };
 
   const handleViewAll = () => {
     console.log("Navigating to all books");
-    // Navigation logic would go here in actual implementation
   };
 
   return (
@@ -140,15 +138,15 @@ const FeaturedBooks = () => {
       </div>
 
       {/* Grid */}
-      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
         {books?.map((book) => (
           <div
             key={book.id}
-            className="bg-white rounded-2xl shadow-md border border-gray-200 overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group flex flex-col"
+            className="relative bg-white rounded-2xl shadow-md border border-gray-200 overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group flex flex-col"
           >
-            {/* Book Image Container */}
-            <div className="relative w-full h-64 sm:h-72 lg:h-80 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden">
-              {/* Category Badge */}
+            {/* Book Image */}
+            <div className="relative w-full h-80 sm:h-96 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden">
+              {/* Category */}
               <div className="absolute top-3 left-3 z-10">
                 <span
                   className={`px-3 py-1.5 text-xs font-semibold rounded-full shadow-sm ${book.categoryColor}`}
@@ -157,37 +155,37 @@ const FeaturedBooks = () => {
                 </span>
               </div>
 
-              {/* Wishlist Icon */}
-              <div className="absolute top-3 right-3 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <button className="p-2 bg-white rounded-full shadow-lg hover:bg-pink-50 transition-colors duration-200">
-                  <Heart className="w-4 h-4 text-gray-700 hover:text-pink-600" />
-                </button>
-              </div>
-
               {/* Image */}
               <img
                 src={book.image}
-                // alt={book.title}
+                alt={book.title}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
 
-              {/* Overlay on Hover */}
-              {/* <div className="absolute inset-0 bg-black bg-opacity-10 group-hover:bg-opacity-20 transition-all duration-300" /> */}
+              {/* Hover Overlay for View Details */}
+              <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
+                <Link
+                  to={`/popular/bookdetails/${book.id}`}
+                  state={{ selectedBook: book }}
+                >
+                  <button className="flex items-center gap-2 px-4 py-2 bg-blue-800 text-white font-semibold rounded-lg hover:bg-blue-900 transition-all duration-300">
+                    <Eye className="w-4 h-4" />
+                    View Details
+                  </button>
+                </Link>
+              </div>
             </div>
 
             {/* Book Info */}
             <div className="p-4 sm:p-5 flex flex-col flex-grow">
-              {/* Title & Author */}
               <div className="mb-3">
-                <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-1 line-clamp-2 group-hover:text-blue-800 transition-colors duration-200">
+                <h3 className="text-lg font-bold text-gray-900 mb-1 line-clamp-2 group-hover:text-blue-800 transition-colors duration-200">
                   {book.title}
                 </h3>
-                <p className="text-xs sm:text-sm text-gray-500 font-medium">
+                <p className="text-sm text-gray-500 font-medium">
                   {book.author}
                 </p>
               </div>
-
-              {/* Rating */}
               <div className="flex items-center gap-2 mb-3">
                 <div className="flex items-center gap-1">
                   <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
@@ -197,26 +195,9 @@ const FeaturedBooks = () => {
                 </div>
                 <span className="text-xs text-gray-400">(200+ reviews)</span>
               </div>
-
-              {/* Description */}
-              <p className="text-xs sm:text-sm text-gray-600 mb-4 line-clamp-2 flex-grow">
+              <p className="text-sm text-gray-600 mb-4 line-clamp-2 flex-grow">
                 {book.description}
               </p>
-
-              {/* Price & Actions */}
-              <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
-                <span className="text-xl sm:text-2xl font-bold text-gray-900">
-                  {book.price}
-                </span>
-                <Link to={`/popular/bookdetails/${book.id}`}
-                state={{ selectedBook: book }}>
-                  <button className="flex items-center gap-2 px-4 py-2 bg-blue-800 text-white text-xs sm:text-sm font-semibold rounded-lg hover:bg-blue-900 transition-all duration-300 shadow-sm hover:shadow-md flex-shrink-0">
-                    <Eye className="w-4 h-4" />
-                    <span className="hidden sm:inline">View Details</span>
-                    <span className="sm:hidden">View</span>
-                  </button>
-                </Link>
-              </div>
             </div>
           </div>
         ))}
