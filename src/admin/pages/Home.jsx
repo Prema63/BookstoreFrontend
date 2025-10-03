@@ -3,6 +3,8 @@ import BannerSection from "../component/Home/BannerSection";
 import CategorySection from "../component/Home/CategorySection";
 import FeaturedBook from "../component/Home/FeaturedBook";
 import AdvertisementSection from "../component/Home/AdvertisementSection";
+import BestSellerSection from "../component/Home/BestSellerSection";
+
 
 const Home = () => {
   return (
@@ -13,6 +15,7 @@ const Home = () => {
         <CategorySection />
         <FeaturedBook />
         <AdvertisementSection/>
+        <BestSellerSection/>
       </div>
     </div>
   );

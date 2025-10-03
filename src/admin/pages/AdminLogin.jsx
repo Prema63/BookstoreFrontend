@@ -35,7 +35,7 @@ export default function AdminLogin() {
         {/* Left section */}
         <div className="hidden md:block w-1/2 h-full">
           <img
-            src="https://imgs.search.brave.com/bblpIKlXcvrP-P7-0-23pm8N410wGNnYZSVQLLJ3lyQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzJhLzQ3/L2JiLzJhNDdiYmQ2/OTExYmFiOTM3ZTkw/ZDkyMjk5OGJiNmIw/LmpwZw"
+            src="https://www.canva.com/templates/EAGnVjljS08-beige-simple-books-stack-instagram-post/"
             alt="Books"
             className="object-cover h-full w-full"
           />

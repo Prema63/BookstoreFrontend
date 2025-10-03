@@ -9,7 +9,7 @@ const AllBooks = () => {
       title: "Pride and Prejudice",
       author: "by Jane Austen",
       rating: 4.8,
-      price: "$12.99",
+      price: "12.99",
       category: "Love",
       description:
         "A timeless tale of love, class, and society in Regency England.",
