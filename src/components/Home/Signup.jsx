@@ -91,9 +91,9 @@ export default function BookstoreSignup() {
   if (!validateForm()) return;
 
   try {
-    const { confirmPassword, ...dataToSend } = formData; // exclude confirmPassword
+    const { confirmPassword, ...dataToSend } = formData; 
 
-    console.log("Sending data:", dataToSend); // debug
+    console.log("Sending data:", dataToSend); 
 
     const response = await axios.post(
       `${url}api/auth/register`,
