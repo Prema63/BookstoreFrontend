@@ -33,7 +33,7 @@ export const CartProvider = ({ children }) => {
 
   const updateQuantity = (id, delta) => {
     setCart((prev) =>
-      prev.map((item) =>
+      prev?.map((item) =>
         item.id === id
           ? { ...item, quantity: Math.max(1, item.quantity + delta) }
           : item

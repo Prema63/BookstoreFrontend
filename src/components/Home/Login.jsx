@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { Eye, EyeOff, BookOpen, Mail, Lock } from "lucide-react";
 import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { BiLogoGmail } from "react-icons/bi";
+import { url } from "../../lib/Lib";
+import axios from "axios";
 
 export default function BookstoreLogin() {
   const [showPassword, setShowPassword] = useState(false);
@@ -19,10 +21,33 @@ export default function BookstoreLogin() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Login attempt:", formData);
-    // Handle login logic here
+
+    try {
+      const response = await axios.post(
+        `${url}api/auth/login`,
+        {
+          email: formData.email,
+          password: formData.password,
+        },
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+
+      console.log("Login successful:", response.data);
+      alert("Login successful!");
+    } catch (error) {
+      if (error.response) {
+        console.error("Login failed:", error.response.data);
+        alert(error.response.data.message || "Login failed");
+      } else {
+        console.error("Network error:", error);
+        alert("Network error: Could not connect to server");
+      }
+    }
   };
 
   return (
@@ -141,14 +166,15 @@ export default function BookstoreLogin() {
             </div>
 
             {/* Login Button and alternative logins */}
-            <button
-              type="button"
-              onClick={handleSubmit}
-              className="w-full bg-blue-800 text-white py-3 px-4 rounded-lg font-medium hover:bg-blue-900 transform transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
-            >
-              
-              Sign In
-            </button>
+            <Link to= "/verify-otp">
+              <button
+                type="button"
+                // onClick={handleSubmit}
+                className="w-full bg-blue-800 text-white py-3 px-4 rounded-lg font-medium hover:bg-blue-900 transform transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+              >
+                Sign In
+              </button>
+            </Link>
 
             {/* Divider */}
             <div className="flex items-center">
@@ -175,7 +201,6 @@ export default function BookstoreLogin() {
                 Continue with Email
               </button>
             </div>
-
           </div>
         </div>
       </div>

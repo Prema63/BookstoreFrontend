@@ -9,7 +9,7 @@ const AllBooks = () => {
       title: "Pride and Prejudice",
       author: "by Jane Austen",
       rating: 4.8,
-      price: "12.99",
+      price: "₹ 12.99",
       category: "Love",
       description:
         "A timeless tale of love, class, and society in Regency England.",
@@ -45,7 +45,7 @@ const AllBooks = () => {
       title: "The 7 Habits of Highly Effective People",
       author: "by Stephen Covey",
       rating: 4.7,
-      price: "$15.99",
+      price: "₹ 15.99",
       category: "Knowledge",
       description:
         "A powerful guide to personal and professional effectiveness.",
@@ -80,7 +80,7 @@ const AllBooks = () => {
       title: "A Brief History of Time",
       author: "by Stephen Hawking",
       rating: 4.6,
-      price: "$14.50",
+      price: "₹ 14.50",
       category: "Knowledge",
       description:
         "An exploration of the universe from the Big Bang to Black Holes.",
@@ -115,7 +115,7 @@ const AllBooks = () => {
       title: "The Great Gatsby",
       author: "by F. Scott Fitzgerald",
       rating: 4.5,
-      price: "$11.99",
+      price: "₹ 11.99",
       category: "Love",
       description:
         "A classic American novel about love, wealth and the American Dream.",
@@ -150,7 +150,7 @@ const AllBooks = () => {
       title: "Sapiens: A Brief History of Humankind",
       author: "by Yuval Noah Harari",
       rating: 4.9,
-      price: "$16.99",
+      price: "₹ 16.99",
       category: "History",
       description:
         "The story of how we conquered the world and transformed ourselves.",
@@ -185,7 +185,7 @@ const AllBooks = () => {
       title: "The Art of War",
       author: "by Sun Tzu",
       rating: 4.4,
-      price: "$9.99",
+      price: " ₹ 9.99",
       category: "History",
       description: "Ancient Chinese military treatise on strategy and warfare.",
       fullDescription:
@@ -219,7 +219,7 @@ const AllBooks = () => {
       title: "Me Before You",
       author: "by Jojo Moyes",
       rating: 4.6,
-      price: "$13.50",
+      price: "₹ 13.50",
       category: "Love",
       description:
         "A story of overwhelming joy of love, sacrifice, and new beginnings.",
@@ -254,7 +254,7 @@ const AllBooks = () => {
       title: "Atomic Habits",
       author: "by James Clear",
       rating: 4.8,
-      price: "$17.99",
+      price: "₹ 17.99",
       category: "Knowledge",
       description: "Tiny changes, remarkable results. Transform your habits.",
       fullDescription:
@@ -346,6 +346,7 @@ const AllBooks = () => {
           </div>
         ))}
       </div>
+      
     </div>
   );
 };

@@ -9,6 +9,8 @@ import Login from "../components/Home/Login";
 import AboutUs from "../pages/about/AboutUs";
 import BookDetailsPage from "../components/popular/BookDetailpage";
 import Cart from "../components/popular/Cart"
+import OTPVerification from "../components/Home/Verify-otp"
+
 
 function UserRoute() {
   return (
@@ -18,6 +20,7 @@ function UserRoute() {
         <Route path="popular" element={<Popular />} />
         <Route path="popular/bookdetails/:id" element={<BookDetailsPage />} />
         <Route path="contact" element={<Contact />} />
+        <Route path="verify-otp" element={<OTPVerification />} />
         <Route path="cart" element={<Cart />} />
         <Route path="about" element={<AboutUs />} />
         <Route path="signup" element={<Signup />} />

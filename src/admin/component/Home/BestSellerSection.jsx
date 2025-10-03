@@ -144,7 +144,6 @@ function AddCategoryModal({ isOpen, onClose, onAdd }) {
 }
 
 //Design after adding the categories from the modal
-
 function CategoryCard({ category, onDelete }) {
   return (
     <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow duration-300">

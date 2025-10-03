@@ -55,8 +55,8 @@ const BookDetailsPage = ({ book, onBack, onBookClick }) => {
 
   const renderStars = (rating) => {
     const stars = [];
-    const fullStars = Math.floor(rating); // full stars
-    const halfStar = rating % 1 >= 0.5; // half star
+    const fullStars = Math.floor(rating);
+    const halfStar = rating % 1 >= 0.5;
     const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
 
     for (let i = 0; i < fullStars; i++) {
@@ -134,6 +134,7 @@ const BookDetailsPage = ({ book, onBack, onBookClick }) => {
                   {selectedBook.price}
                 </span>
               </div>
+          
             </div>
 
             {/* Quantity and Actions */}

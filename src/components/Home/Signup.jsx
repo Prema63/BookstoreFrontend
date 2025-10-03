@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Eye,
   EyeOff,
@@ -10,6 +10,8 @@ import {
   MapPin,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { url } from "../../lib/Lib";
+import axios from "axios";
 
 export default function BookstoreSignup() {
   const [formData, setFormData] = useState({
@@ -19,9 +21,9 @@ export default function BookstoreSignup() {
     phone: "",
     password: "",
     confirmPassword: "",
-    address: "",
-    city: "",
-    zipCode: "",
+    // address: "",
+    // city: "",
+    // zipCode: "",
     favoriteGenres: [],
     newsletter: true,
     terms: false,
@@ -81,12 +83,53 @@ export default function BookstoreSignup() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = () => {
-    if (validateForm()) {
-      console.log("Account created:", formData);
-      alert("Account created successfully! Welcome to our bookstore family!");
+
+
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  if (!validateForm()) return;
+
+  try {
+    const { confirmPassword, ...dataToSend } = formData; // exclude confirmPassword
+
+    console.log("Sending data:", dataToSend); // debug
+
+    const response = await axios.post(
+      `${url}api/auth/register`,
+      dataToSend,
+      { headers: { "Content-Type": "application/json" } }
+    );
+
+    console.log("Success:", response.data);
+    alert("Account created successfully!");
+    setFormData({
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      password: "",
+      confirmPassword: "",
+      // address: "",
+      // city: "",
+      // zipCode: "",
+      favoriteGenres: [],
+      newsletter: true,
+      terms: false,
+    });
+    setErrors({});
+  } catch (error) {
+    if (error.response) {
+      console.error("API Error:", error.response.data);
+      alert(error.response.data.message || "Failed to create account");
+    } else {
+      console.error("Network Error:", error);
+      alert("Network error");
     }
-  };
+  }
+};
+
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50  to-purple-50 py-6 px-4 sm:px-6 lg:px-8">
@@ -208,8 +251,6 @@ export default function BookstoreSignup() {
                 </div>
               </div>
 
-             
-
               {/* Security */}
               <div>
                 <h2 className="text-xl font-semibold text-gray-800 mb-4 flex items-center">
@@ -228,9 +269,7 @@ export default function BookstoreSignup() {
                         value={formData.password}
                         onChange={handleInputChange}
                         className={`w-full px-4 py-3 pr-12 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-800  transition-colors ${
-                          errors.password
-                            ? "border-red-500"
-                            : "border-gray-300"
+                          errors.password ? "border-red-500" : "border-gray-300"
                         }`}
                         placeholder="Create a strong password"
                       />
@@ -381,7 +420,6 @@ export default function BookstoreSignup() {
                   </Link>
                 </p>
               </div>
-              
             </div>
           </div>
         </div>
